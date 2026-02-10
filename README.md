@@ -1,2 +1,2 @@
-# proyecto-equipo-5
-Proyecto equipo 5 - punto.exe
+# RideTogether
+RideTogether - Equipo 5 - punto.exe
