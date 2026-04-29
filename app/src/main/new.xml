@@ -1,3 +1,0 @@
-<com.google.android.material.button.MaterialButton android:id="@+id/btnIncidentHistory"
-    android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="Historial de incidentes" app:backgroundTint="@color/secondary_green" />
