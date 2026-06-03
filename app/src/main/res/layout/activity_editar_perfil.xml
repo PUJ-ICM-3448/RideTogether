@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <!-- Header Azul con Botón Guardar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -43,6 +44,8 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="24dp">
+
+            <!-- Foto de Perfil con Icono de Cámara -->
             <FrameLayout
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -73,6 +76,7 @@
                     app:strokeWidth="1dp" />
             </FrameLayout>
 
+            <!-- Campo Nombre -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,6 +103,7 @@
                     android:textColor="@color/gray_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Campo Correo -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -125,6 +130,7 @@
                     android:textColor="@color/gray_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Campo Contacto -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -151,6 +157,7 @@
                     android:textColor="@color/gray_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Campo Contraseña -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -178,6 +185,7 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Botón Cerrar Sesión -->
             <LinearLayout
                 android:id="@+id/btnLogoutContainer"
                 android:layout_width="wrap_content"

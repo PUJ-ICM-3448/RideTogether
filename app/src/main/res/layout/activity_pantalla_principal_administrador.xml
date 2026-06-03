@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA"
-    android:fitsSystemWindows="true"
     tools:context=".PantallaPrincipalAdministradorActivity">
 
     <LinearLayout
@@ -13,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Encabezado superior azul -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
@@ -28,7 +28,7 @@
                 android:contentDescription="Regresar"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:focusable="true" />
+                android:focusable="true"/>
 
             <TextView
                 android:id="@+id/tvGreeting"
@@ -37,45 +37,32 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_toEndOf="@id/ivBack"
-                android:text="Hola,"
+                android:text="Hola, Julia"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivAdminAvatar"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="48dp"
                 android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_menu_myplaces"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                app:shapeAppearanceOverlay="@style/CircleImage" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnEditarPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="Editar"
-                android:textAllCaps="false"
-                android:textSize="11sp"
-                app:backgroundTint="#1565C0"
-                app:cornerRadius="8dp" />
-
+                android:src="@mipmap/ic_launcher"
+                app:shapeAppearanceOverlay="@style/CircleAppearance"
+                app:strokeColor="@color/white"
+                app:strokeWidth="2dp"/>
         </RelativeLayout>
 
+        <!-- Sección de accesos rápidos (Cuadrícula 2x2) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="12dp">
 
+            <!-- Fila 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,7 +93,7 @@
                             android:text="Rutas"
                             android:textColor="@color/primary_blue"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
+                            android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -135,11 +122,12 @@
                             android:text="Estudiantes"
                             android:textColor="@color/primary_blue"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
+                            android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
+            <!-- Fila 2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,7 +158,7 @@
                             android:text="Incidentes"
                             android:textColor="@color/primary_blue"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
+                            android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -199,12 +187,13 @@
                             android:text="Notificaciones"
                             android:textColor="@color/primary_blue"
                             android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
+                            android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Vision general -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -214,8 +203,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"/>
 
+        <!-- Tarjetas de resumen (Cuadrícula 2x2) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -244,7 +234,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@mipmap/ic_launcher"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -252,7 +242,7 @@
                             android:layout_marginStart="8dp"
                             android:textColor="#33691E"
                             android:textStyle="bold"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -273,7 +263,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@mipmap/ic_launcher"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -281,7 +271,7 @@
                             android:layout_marginStart="8dp"
                             android:textColor="#1A237E"
                             android:textStyle="bold"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -308,7 +298,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_warning_dark" />
+                            android:src="@drawable/ic_warning_dark"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -316,7 +306,7 @@
                             android:layout_marginStart="8dp"
                             android:textColor="#E65100"
                             android:textStyle="bold"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -337,7 +327,7 @@
                         <ImageView
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            android:src="@drawable/ic_check_green" />
+                            android:src="@drawable/ic_check_green"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -345,7 +335,7 @@
                             android:layout_marginStart="8dp"
                             android:textColor="#311B92"
                             android:textStyle="bold"
-                            android:textSize="11sp" />
+                            android:textSize="11sp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

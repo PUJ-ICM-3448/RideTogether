@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back_white"
+            app:title="Estudiantes"
+            app:titleTextColor="@color/white" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchLayout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            app:boxCornerRadiusBottomEnd="25dp"
+            app:boxCornerRadiusBottomStart="25dp"
+            app:boxCornerRadiusTopEnd="25dp"
+            app:boxCornerRadiusTopStart="25dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:startIconDrawable="@android:drawable/ic_menu_search">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Buscar estudiante"
+                android:inputType="text"
+                android:paddingVertical="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/filtersScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="16dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/searchLayout">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chipTodos"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/secondary_green"
+                    android:minHeight="36dp"
+                    android:text="Todos"
+                    android:textColor="@color/white"
+                    app:cornerRadius="18dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chipNorte"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/gray_text"
+                    android:minHeight="36dp"
+                    android:text="Norte"
+                    android:textColor="@color/white"
+                    app:cornerRadius="18dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chipCentro"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/gray_text"
+                    android:minHeight="36dp"
+                    android:text="Centro"
+                    android:textColor="@color/white"
+                    app:cornerRadius="18dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chipOriente"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/gray_text"
+                    android:minHeight="36dp"
+                    android:text="Oriental"
+                    android:textColor="@color/white"
+                    app:cornerRadius="18dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvStudents"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/filtersScroll"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAgregarEstudiante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/secondary_green"
+        app:tint="@color/white" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

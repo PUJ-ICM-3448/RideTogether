@@ -1,76 +1,70 @@
 package com.example.proyecto
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.proyecto.databinding.ActivityNotificacionesBinding
 
 class NotificacionesActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityNotificacionesBinding
-    private val contactos = mutableListOf<Pair<String, Map<String, Any>>>()
+    private lateinit var adapter: NotificacionesAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNotificacionesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.toolbar.setNavigationOnClickListener { finish() }
-        val uid = FirebaseRepository.usuarioActual()?.uid ?: return
-        FirebaseRepository.obtenerPerfil(uid,
-            onSuccess = { data ->
-                val miRol = data["rol"] as? String ?: "tutor"
-                val rolBuscar = when (miRol) {
-                    getString(R.string.conductor), "conductor" -> getString(R.string.tutor)
-                    else -> getString(R.string.conductor)
-                }
-                FirebaseRepository.obtenerUsuariosConRol(rolBuscar) { lista ->
-                    contactos.clear()
-                    contactos.addAll(lista)
-                    setupRecycler()
-                }
-            },
-            onError = { }
-        )
-    }
-    private fun setupRecycler() {
-        binding.rvNotifications.layoutManager = LinearLayoutManager(this)
-        binding.rvNotifications.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-            inner class VH(view: android.view.View) : RecyclerView.ViewHolder(view) {
-                val tvTitle:  TextView = view.findViewById(R.id.tvTitle)
-                val tvDesc:   TextView = view.findViewById(R.id.tvDescription)
-                val btnChat:  Button   = view.findViewById(R.id.btnChat)
-            }
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-                VH(LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_notification, parent, false))
-            override fun getItemCount() = contactos.size
-            override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-                val vh = holder as VH
-                val (uid, data) = contactos[position]
-                val nombre = data["nombre"] as? String ?: "Usuario"
-                val rol    = data["rol"]    as? String ?: ""
-                vh.tvTitle.text = nombre
-                vh.tvDesc.text  = rol
-                if (position == 0) {
-                    vh.btnChat.isEnabled = true
-                    vh.btnChat.text = "Abrir chat"
-                    vh.btnChat.setOnClickListener {
-                        startActivity(
-                            Intent(this@NotificacionesActivity, ChatActivity::class.java).apply {
-                                putExtra("otroUid", uid)
-                                putExtra("otroNombre", nombre)
-                            }
-                        )
-                    }
-                } else {
-                    vh.btnChat.isEnabled = false
-                    vh.btnChat.text = "Chat"
-                }
-            }
+
+        // BOTÓN VOLVER: Configuración de la flecha de navegación en la Toolbar
+        binding.toolbar.setNavigationOnClickListener {
+            finish() // Regresa a la pantalla anterior
         }
+
+        // Configuración de la lista de notificaciones
+        setupNotificationList()
+
+        // BOTÓN LIMPIAR: Lógica para vaciar la lista
+        binding.btnClear.setOnClickListener {
+            adapter.clearAll() // Llama a la función del adapter para vaciar los datos
+        }
+    }
+
+    private fun setupNotificationList() {
+        // DATOS MOCK: Carga inicial sugerida en el requerimiento
+        val mockData = mutableListOf(
+            NotificationItem(
+                id = 1,
+                type = "bus",
+                title = "Bus cerca",
+                description = "El bus ABC123 (12) se encuentra cerca de la ubicación marcada como llegada"
+            ),
+            NotificationItem(
+                id = 2,
+                type = "estudiante",
+                title = "Estudiante recogido",
+                description = "Sofia Guzman se subió a la ruta #12 del colegio cambridge school"
+            ),
+            NotificationItem(
+                id = 3,
+                type = "estudiante",
+                title = "Estudiante entregado",
+                description = "Sofia Guzman fue entregada en la ubicación marcada como destino final"
+            ),
+            NotificationItem(
+                id = 4,
+                type = "incidente",
+                title = "Incidente detectado",
+                description = "Se registró una avería en el bus #12, se presentaron retrasos en la entrega de la estudiante"
+            ),
+            NotificationItem(
+                id = 5,
+                type = "incidente",
+                title = "Incidente detectado",
+                description = "La alumna Sofia Gomez no se está comportando adecuadamente en el trayecto al colegio"
+            )
+        )
+
+        // Inicializar el Adapter y asignarlo al RecyclerView
+        adapter = NotificacionesAdapter(mockData)
+        binding.rvNotifications.adapter = adapter
     }
 }

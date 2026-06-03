@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:fitsSystemWindows="true">
+    android:background="#F5F5F5">
 
+    <!-- Header Azul -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:background="@color/primary_blue"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back_white"
-        app:title="Hola, Conductor"
+        app:title="Hola, Luis"
         app:titleTextColor="@color/white">
 
         <LinearLayout
@@ -23,208 +23,34 @@
             android:layout_gravity="end"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingEnd="8dp">
+            android:paddingEnd="16dp">
 
-            <ImageButton
-                android:id="@+id/btnPerfil"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@android:drawable/ic_menu_myplaces"
-                app:tint="@color/white" />
-
-            <ImageButton
-                android:id="@+id/btnNotificaciones"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
                 android:src="@android:drawable/ic_popup_reminder"
                 app:tint="@color/white" />
 
-            <ImageButton
-                android:id="@+id/btnReportarIncidente"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_warning_dark"
-                app:tint="@color/white" />
-
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_myplaces"
+                app:shapeAppearanceOverlay="@style/CircleImage" />
         </LinearLayout>
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <androidx.core.widget.NestedScrollView
+    <!-- Lista de Rutas Asignadas -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRoutes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sensores del vehículo"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/tvAccelerometer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Acelerómetro: iniciando..."
-                        android:textColor="@color/gray_text"
-                        android:textSize="11sp" />
-
-                    <TextView
-                        android:id="@+id/tvAlertaFrenazo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#FFCCCC"
-                        android:padding="4dp"
-                        android:text="⚠ Movimiento brusco detectado"
-                        android:textColor="#CC0000"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/tvGyroscope"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Giroscopio: iniciando..."
-                        android:textColor="@color/gray_text"
-                        android:textSize="11sp" />
-
-                    <TextView
-                        android:id="@+id/tvVelocidad"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Velocidad GPS: 0.0 km/h"
-                        android:textColor="@color/gray_text"
-                        android:textSize="11sp" />
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Paradas del viaje"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/tvEstadoViaje"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Sin iniciar"
-                            android:textColor="@color/gray_text"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvEstadoParadas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="0 paradas registradas"
-                        android:textColor="@color/gray_text"
-                        android:textSize="12sp" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvParadas"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:nestedScrollingEnabled="false"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnAgregarParada"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="12dp"
-                        android:text="+ Seleccionar estudiante como parada"
-                        android:textAllCaps="false"
-                        app:backgroundTint="@color/primary_blue"
-                        app:cornerRadius="8dp" />
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnIniciarViaje"
-                    android:layout_width="0dp"
-                    android:layout_height="56dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:text="Iniciar viaje"
-                    android:textAllCaps="false"
-                    app:backgroundTint="@color/secondary_green"
-                    app:cornerRadius="8dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnFinalizarViaje"
-                    android:layout_width="0dp"
-                    android:layout_height="56dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:enabled="false"
-                    android:text="Finalizar viaje"
-                    android:textAllCaps="false"
-                    app:backgroundTint="#E53935"
-                    app:cornerRadius="8dp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        tools:listitem="@layout/item_ruta_conductor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

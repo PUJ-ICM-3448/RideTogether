@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <!-- Toolbar Azul -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -16,6 +17,7 @@
         app:title="Historial de viajes"
         app:titleTextColor="@color/white">
 
+        <!-- Botón Filtrar -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFilter"
             style="@style/Widget.Material3.Button.TonalButton"
@@ -31,6 +33,7 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
+    <!-- Lista de Historial -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
@@ -40,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         tools:listitem="@layout/item_trip_history" />
 
+    <!-- Botón Historial de Incidentes -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnIncidentHistory"
         android:layout_width="wrap_content"

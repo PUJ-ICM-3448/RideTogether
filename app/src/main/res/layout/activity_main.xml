@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/primary_blue">
 
+    <!-- Logo de RideTogether corregido -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="250dp"
@@ -18,6 +19,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:src="@android:drawable/ic_menu_directions" />
+
+    <!-- Nota: Se eliminó el TextView duplicado del nombre ya que el logo.png lo incluye visualmente -->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnStartLogin"

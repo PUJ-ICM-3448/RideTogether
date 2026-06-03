@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fitsSystemWindows="true">
+    android:background="@color/white">
 
+    <!-- Header Azul -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -29,6 +29,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <!-- Información de la Ruta -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +50,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvNombreRuta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ruta Norte"
@@ -58,21 +58,26 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvBusRuta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bus: ABC 123 (12)"
                         android:textColor="@color/gray_text" />
 
                     <TextView
-                        android:id="@+id/tvConductorRuta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Conductor: Luis Martinez"
                         android:textColor="@color/gray_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Administrador: Julia Ramirez"
+                        android:textColor="@color/gray_text" />
                 </LinearLayout>
             </LinearLayout>
 
+            <!-- Vision General -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,6 +93,7 @@
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
+                <!-- Finalizado -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -118,6 +124,7 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Incidentes -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -133,7 +140,6 @@
                         android:orientation="vertical"
                         android:padding="8dp">
                         <TextView
-                            android:id="@+id/tvIncidentesCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
@@ -149,6 +155,7 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Asistencias -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -180,6 +187,7 @@
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
+            <!-- Paradas -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,22 +199,25 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:layout_marginTop="8dp"
                 app:cardCornerRadius="12dp"
                 app:strokeWidth="0dp">
-                <org.osmdroid.views.MapView
-                    android:id="@+id/mapViewRutas"
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@android:drawable/ic_menu_mapmode" />
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Lista de Paradas -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
+                <!-- Colegio -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -226,6 +237,7 @@
                         android:textColor="@color/black" />
                 </LinearLayout>
 
+                <!-- Primer parada -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -245,6 +257,7 @@
                         android:textColor="@color/black" />
                 </LinearLayout>
 
+                <!-- Segunda parada (actual) -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -268,6 +281,7 @@
                         android:textColor="#E65100" />
                 </LinearLayout>
 
+                <!-- Destino -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -285,7 +299,9 @@
                         android:text="Destino (casa)"
                         android:textColor="@color/black" />
                 </LinearLayout>
+
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

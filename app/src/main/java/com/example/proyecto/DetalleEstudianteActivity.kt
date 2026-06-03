@@ -15,31 +15,28 @@ class DetalleEstudianteActivity : AppCompatActivity() {
         binding = ActivityDetalleEstudianteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.toolbar.setNavigationOnClickListener { finish() }
-
-        val tutorPhone = intent.getStringExtra("tutorPhone") ?: ""
-        val tutorEmail = intent.getStringExtra("tutorEmail") ?: ""
-
-        if (tutorPhone.isNotEmpty()) binding.tvTutorPhone.text = tutorPhone
-        if (tutorEmail.isNotEmpty()) binding.tvTutorEmail.text = tutorEmail
-
-        binding.ivCallTutor.setOnClickListener {
-            val phone = binding.tvTutorPhone.text.toString()
-            if (phone.isNotEmpty()) {
-                startActivity(Intent(Intent.ACTION_DIAL).apply {
-                    data = Uri.parse("tel:$phone")
-                })
-            }
+        // Configurar Toolbar
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
         }
 
+        // Acción de Llamada
+        binding.ivCallTutor.setOnClickListener {
+            val phone = binding.tvTutorPhone.text.toString()
+            val intent = Intent(Intent.ACTION_DIAL).apply {
+                data = Uri.parse("tel:$phone")
+            }
+            startActivity(intent)
+        }
+
+        // Acción de Correo
         binding.ivEmailTutor.setOnClickListener {
             val email = binding.tvTutorEmail.text.toString()
-            if (email.isNotEmpty()) {
-                startActivity(Intent(Intent.ACTION_SENDTO).apply {
-                    data = Uri.parse("mailto:$email")
-                    putExtra(Intent.EXTRA_SUBJECT, "Contacto desde RideTogether")
-                })
+            val intent = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:$email")
+                putExtra(Intent.EXTRA_SUBJECT, "Contacto desde RideTogether")
             }
+            startActivity(intent)
         }
     }
 }

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fitsSystemWindows="true">
+    android:background="@color/white">
 
+    <!-- Header -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -38,6 +38,7 @@
         </LinearLayout>
     </com.google.android.material.appbar.MaterialToolbar>
 
+    <!-- Filtros -->
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroupFilters"
         android:layout_width="match_parent"
@@ -85,6 +86,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <!-- Item 1: Camilo López -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -174,6 +176,7 @@
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Item 2: Felipe Ortiz -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -263,6 +266,7 @@
                 </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Item 3: René Castillo -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

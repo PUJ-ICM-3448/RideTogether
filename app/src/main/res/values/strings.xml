@@ -49,6 +49,7 @@
     <string name="user_type_required">Debes seleccionar un tipo de usuario</string>
     <string name="administrativo">Administrativo</string>
 
+    <!-- Terms sections -->
     <string name="term_1">1 Uso de la aplicación</string>
     <string name="term_2">2 Privacidad y protección de datos</string>
     <string name="term_3">3 Responsabilidades del usuario</string>

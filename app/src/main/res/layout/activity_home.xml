@@ -1,232 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:fitsSystemWindows="true">
+    android:background="#F5F5F5">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Header / Barra Superior -->
+    <View
+        android:id="@+id/headerBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="120dp"
+        android:background="@color/primary_blue"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/headerBackground"
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_back_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Hola, Carlos"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ivBack"
+        app:layout_constraintStart_toEndOf="@id/ivBack"
+        app:layout_constraintTop_toTopOf="@id/ivBack" />
+
+    <ImageView
+        android:id="@+id/ivNotification"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:src="@android:drawable/ic_popup_reminder"
+        app:layout_constraintBottom_toBottomOf="@id/ivBack"
+        app:layout_constraintEnd_toStartOf="@id/ivProfile"
+        app:layout_constraintTop_toTopOf="@id/ivBack"
+        app:tint="@color/white" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_menu_myplaces"
+        app:layout_constraintBottom_toBottomOf="@id/ivBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivBack"
+        app:shapeAppearanceOverlay="@style/CircleImage" />
+
+    <!-- Card de Información del Estudiante -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvStudentInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-40dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/headerBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@color/primary_blue"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:src="@drawable/ic_back_white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvWelcome"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Hola,"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/ivBack"
-            app:layout_constraintStart_toEndOf="@id/ivBack"
-            app:layout_constraintTop_toTopOf="@id/ivBack" />
+            android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/ivNotification"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
-            android:src="@android:drawable/ic_popup_reminder"
-            app:layout_constraintBottom_toBottomOf="@id/ivBack"
-            app:layout_constraintEnd_toStartOf="@id/ivProfile"
-            app:layout_constraintTop_toTopOf="@id/ivBack"
-            app:tint="@color/white" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivStudent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@android:drawable/ic_menu_directions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/CircleImage" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:scaleType="centerCrop"
-            android:src="@android:drawable/ic_menu_myplaces"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="@id/ivBack"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ivBack"
-            app:shapeAppearanceOverlay="@style/CircleImage" />
+            <TextView
+                android:id="@+id/tvStudentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Mateo Gomez"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/ivStudent"
+                app:layout_constraintTop_toTopOf="@id/ivStudent" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cvStudentInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="-40dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:layout_constraintTop_toBottomOf="@id/headerBackground">
+            <TextView
+                android:id="@+id/tvRoute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ruta: Norte 3"
+                android:textColor="@color/gray_text"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tvStudentName"
+                app:layout_constraintTop_toBottomOf="@id/tvStudentName" />
 
+            <TextView
+                android:id="@+id/tvBus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bus: ABC 123 (12)"
+                android:textColor="@color/gray_text"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tvStudentName"
+                app:layout_constraintTop_toBottomOf="@id/tvRoute" />
+
+            <TextView
+                android:id="@+id/tvDriver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conductor: Luis Martinez"
+                android:textColor="@color/gray_text"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tvStudentName"
+                app:layout_constraintTop_toBottomOf="@id/tvBus" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado: En camino"
+                android:textColor="@color/gray_text"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tvStudentName"
+                app:layout_constraintTop_toBottomOf="@id/tvDriver" />
+
+            <!-- Mapa OSM -->
+            <org.osmdroid.views.MapView
+                android:id="@+id/mapViewHome"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tvStatus" />
+
+            <!-- Datos de Sensores -->
             <LinearLayout
+                android:id="@+id/llSensors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/ivStudent"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@android:drawable/ic_menu_directions"
-                        app:shapeAppearanceOverlay="@style/CircleImage" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="16dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvStudentName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cargando..."
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvRoute"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/gray_text"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tvBus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/gray_text"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tvDriver"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/gray_text"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tvStatus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/gray_text"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <org.osmdroid.views.MapView
-                    android:id="@+id/mapViewHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="16dp" />
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/mapViewHome">
 
                 <TextView
-                    android:id="@+id/tvEstadoViaje"
+                    android:id="@+id/tvAccelerometer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:text="Acelerómetro: Cargando..."
+                    android:textSize="10sp"
+                    android:textColor="@color/gray_text" />
+
+                <TextView
+                    android:id="@+id/tvGyroscope"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giroscopio: Cargando..."
+                    android:textSize="10sp"
+                    android:textColor="@color/gray_text" />
+            </LinearLayout>
+
+            <!-- Lista de paradas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/llSensors">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_warning_dark"
                     android:drawablePadding="8dp"
-                    android:text="Esperando que el conductor inicie el viaje"
+                    android:text="Bus escolar localizado en tiempo real"
                     android:textColor="@color/gray_text"
                     android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Paradas del viaje"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_check_green"
+                    android:drawablePadding="8dp"
+                    android:text="Colegio cambridge School"
+                    android:textColor="@color/black" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvParadasTutor"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    android:background="#E07C4E"
+                    android:padding="8dp"
+                    android:drawableStart="@drawable/ic_directions_white"
+                    android:drawablePadding="8dp"
+                    android:text="Segunda parada (actual)"
+                    android:textColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/tvAccelerometer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@android:drawable/presence_busy"
+                    android:drawablePadding="8dp"
+                    android:text="Tercer parada"
+                    android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/tvGyroscope"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@android:drawable/presence_busy"
+                    android:drawablePadding="8dp"
+                    android:text="Destino (casa)"
+                    android:textColor="@color/black" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/cvStudentInfo">
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnViewRoute"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/primary_blue"
-                android:text="Ruta completa"
-                android:textColor="@color/white"
-                app:cornerRadius="4dp"
-                app:icon="@android:drawable/ic_menu_mylocation"
-                app:iconGravity="top" />
+    <!-- Botones Inferiores -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnHistory"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/secondary_green"
-                android:text="Historial"
-                android:textColor="@color/white"
-                app:cornerRadius="4dp"
-                app:icon="@android:drawable/ic_menu_agenda"
-                app:iconGravity="top" />
-        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnViewRoute"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/primary_blue"
+            android:text="Ruta completa"
+            android:textColor="@color/white"
+            app:cornerRadius="4dp"
+            app:icon="@android:drawable/ic_menu_mylocation"
+            app:iconGravity="top" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHistory"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/secondary_green"
+            android:text="Historial"
+            android:textColor="@color/white"
+            app:cornerRadius="4dp"
+            app:icon="@android:drawable/ic_menu_agenda"
+            app:iconGravity="top" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

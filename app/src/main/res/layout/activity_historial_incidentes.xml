@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <!-- Header Azul -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -28,6 +29,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <!-- Tarjeta del Estudiante -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,6 +84,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Lista de Incidentes (RecyclerView) -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvIncidents"
                 android:layout_width="match_parent"
@@ -91,6 +94,7 @@
                 tools:itemCount="3"
                 tools:listitem="@layout/item_incident" />
 
+            <!-- Botón Ver más -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSeeMore"
                 style="@style/Widget.Material3.Button.TonalButton"

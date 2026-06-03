@@ -1,133 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:fitsSystemWindows="true">
+    android:background="@color/white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Header Azul -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary_blue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back_white"
+        app:title="Estudiantes"
+        app:titleTextColor="@color/white" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/primary_blue"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back_white"
-            app:title="Estudiantes"
-            app:titleTextColor="@color/white" />
+    <!-- Barra de Búsqueda -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        app:boxCornerRadiusBottomEnd="25dp"
+        app:boxCornerRadiusBottomStart="25dp"
+        app:boxCornerRadiusTopEnd="25dp"
+        app:boxCornerRadiusTopStart="25dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:startIconDrawable="@android:drawable/ic_menu_search">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/searchLayout"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="12dp"
-            app:boxCornerRadiusBottomEnd="25dp"
-            app:boxCornerRadiusBottomStart="25dp"
-            app:boxCornerRadiusTopEnd="25dp"
-            app:boxCornerRadiusTopStart="25dp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:startIconDrawable="@android:drawable/ic_menu_search">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Buscar estudiante"
-                android:inputType="text"
-                android:paddingVertical="10dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <HorizontalScrollView
-            android:id="@+id/filtersScroll"
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:paddingHorizontal="16dp"
-            android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@id/searchLayout">
+            android:hint="Buscar estudiante"
+            android:inputType="text"
+            android:paddingVertical="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+    <!-- Filtros -->
+    <HorizontalScrollView
+        android:id="@+id/filtersScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="16dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/secondary_green"
+                android:minHeight="36dp"
+                android:text="Todos"
+                android:textColor="@color/white"
+                app:cornerRadius="18dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/chipTodos"
-                    style="@style/Widget.Material3.Button.TonalButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/secondary_green"
-                    android:minHeight="36dp"
-                    android:text="Todos"
-                    android:textColor="@color/white"
-                    app:cornerRadius="18dp" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/gray_text"
+                android:minHeight="36dp"
+                android:text="Norte"
+                android:textColor="@color/white"
+                app:cornerRadius="18dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/chipNorte"
-                    style="@style/Widget.Material3.Button.TonalButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/gray_text"
-                    android:minHeight="36dp"
-                    android:text="Norte"
-                    android:textColor="@color/white"
-                    app:cornerRadius="18dp" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/gray_text"
+                android:minHeight="36dp"
+                android:text="Centro"
+                android:textColor="@color/white"
+                app:cornerRadius="18dp" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/chipCentro"
-                    style="@style/Widget.Material3.Button.TonalButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/gray_text"
-                    android:minHeight="36dp"
-                    android:text="Centro"
-                    android:textColor="@color/white"
-                    app:cornerRadius="18dp" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/gray_text"
+                android:minHeight="36dp"
+                android:text="Oriental"
+                android:textColor="@color/white"
+                app:cornerRadius="18dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/chipOriente"
-                    style="@style/Widget.Material3.Button.TonalButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/gray_text"
-                    android:minHeight="36dp"
-                    android:text="Oriental"
-                    android:textColor="@color/white"
-                    app:cornerRadius="18dp" />
-            </LinearLayout>
-        </HorizontalScrollView>
+    <!-- Lista de Estudiantes -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filtersScroll">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvStudents"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:padding="8dp"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/filtersScroll"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Estudiante 1 -->
+            <include
+                android:id="@+id/student1"
+                layout="@layout/item_estudiante_administrador" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAgregarEstudiante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/secondary_green"
-        app:tint="@color/white" />
+            <!-- Estudiante 2 -->
+            <include
+                android:id="@+id/student2"
+                layout="@layout/item_estudiante_administrador" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <!-- Estudiante 3 -->
+            <include
+                android:id="@+id/student3"
+                layout="@layout/item_estudiante_administrador" />
+
+            <!-- Estudiante 4 -->
+            <include
+                android:id="@+id/student4"
+                layout="@layout/item_estudiante_administrador" />
+
+            <!-- Estudiante 5 -->
+            <include
+                android:id="@+id/student5"
+                layout="@layout/item_estudiante_administrador" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

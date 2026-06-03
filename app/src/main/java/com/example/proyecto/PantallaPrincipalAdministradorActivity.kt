@@ -2,52 +2,53 @@ package com.example.proyecto
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.proyecto.databinding.ActivityPantallaPrincipalAdministradorBinding
 
+/**
+ * Pantalla Principal para el perfil Administrador.
+ * Muestra un dashboard con accesos rápidos y una visión general del estado del sistema.
+ */
 class PantallaPrincipalAdministradorActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityPantallaPrincipalAdministradorBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPantallaPrincipalAdministradorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.ivBack.setOnClickListener { finish() }
-        cargarAdmin()
-        binding.ivAdminAvatar.setOnClickListener {
-            startActivity(Intent(this, EditarPerfilActivity::class.java))
+
+        // Botón de retroceso en el encabezado
+        binding.ivBack.setOnClickListener {
+            finish()
         }
-        binding.tvGreeting.setOnClickListener {
-            startActivity(Intent(this, EditarPerfilActivity::class.java))
-        }
-        binding.btnEditarPerfil.setOnClickListener {
-            startActivity(Intent(this, EditarPerfilActivity::class.java))
-        }
+
+        // Manejo de clics en la cuadrícula de accesos rápidos
+        setupQuickAccessClicks()
+    }
+
+    /**
+     * Configura los clics para las opciones de acceso rápido.
+     */
+    private fun setupQuickAccessClicks() {
         binding.cardRutas.setOnClickListener {
+            // Navegación a la pantalla de Ver Rutas para Administrador
             startActivity(Intent(this, VerRutasAdministradorActivity::class.java))
         }
+
         binding.cardEstudiantes.setOnClickListener {
+            // Navegación a la pantalla de Estudiantes para Administrador
             startActivity(Intent(this, EstudiantesAdministradorActivity::class.java))
         }
+
         binding.cardIncidentes.setOnClickListener {
+            // Navegación a la pantalla de Incidentes para Administrador
             startActivity(Intent(this, IncidentesAdministradorActivity::class.java))
         }
+
         binding.cardNotificaciones.setOnClickListener {
-            startActivity(Intent(this, NotificacionesActivity::class.java))
+            Toast.makeText(this, "Abrir notificaciones", Toast.LENGTH_SHORT).show()
         }
-    }
-    private fun cargarAdmin() {
-        val uid = FirebaseRepository.usuarioActual()?.uid ?: return
-        FirebaseRepository.obtenerPerfil(uid,
-            onSuccess = { data ->
-                val nombre = data["nombre"] as? String ?: "Administrador"
-                binding.tvGreeting.text = "Hola, $nombre"
-                val fotoUrl = data["fotoUrl"] as? String ?: ""
-                if (fotoUrl.isNotEmpty()) {
-                    Glide.with(this).load(fotoUrl).circleCrop().into(binding.ivAdminAvatar)
-                }
-            },
-            onError = { }
-        )
     }
 }

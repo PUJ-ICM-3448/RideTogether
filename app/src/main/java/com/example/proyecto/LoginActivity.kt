@@ -2,69 +2,82 @@ package com.example.proyecto
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyecto.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        FirebaseRepository.usuarioActual()?.uid?.let { uid ->
-            consultarRolYNavegar(uid); return
+
+        // Configuración de la Toolbar
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
-        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
+        // CONFIGURACIÓN DEL DROPDOWN
+        setupUserTypeDropdown()
+
+        // Lógica del botón Iniciar sesión
         binding.btnLogin.setOnClickListener {
-            val email = binding.tilEmail.editText?.text.toString().trim()
-            val pass  = binding.tilPassword.editText?.text.toString()
-            if (email.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+            val userType = binding.actvUserType.text.toString()
+            val email = binding.tilEmail.editText?.text.toString()
+            val password = binding.tilPassword.editText?.text.toString()
+
+            // 1. VALIDACIÓN DEL TIPO DE USUARIO
+            if (userType.isEmpty()) {
+                binding.tilUserType.error = getString(R.string.user_type_required)
                 return@setOnClickListener
+            } else {
+                binding.tilUserType.error = null
             }
-            binding.btnLogin.isEnabled = false
-            FirebaseRepository.iniciarSesion(email, pass,
-                onSuccess = { _, rol, nombre ->
-                    binding.btnLogin.isEnabled = true
-                    Toast.makeText(this, "Bienvenido, $nombre", Toast.LENGTH_SHORT).show()
-                    navegarSegunRol(rol)
-                },
-                onError = { msg ->
-                    binding.btnLogin.isEnabled = true
-                    Toast.makeText(this, "Error: $msg", Toast.LENGTH_LONG).show()
+
+            // 2. VALIDACIÓN DE CAMPOS DE AUTENTICACIÓN
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                // VERIFICAR CREDENCIALES
+                if (UserManager.authenticate(this, email, password, userType)) {
+                    Toast.makeText(this, "Inicio de sesión como $userType exitoso", Toast.LENGTH_SHORT).show()
+                    navigateToPrincipal(userType)
+                } else {
+                    Toast.makeText(this, "Credenciales incorrectas para el perfil $userType", Toast.LENGTH_LONG).show()
                 }
-            )
-        }
-        binding.tvForgotPassword.setOnClickListener {
-            val email = binding.tilEmail.editText?.text.toString().trim()
-            if (email.isEmpty()) {
-                Toast.makeText(this, "Escribe tu correo primero", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            } else {
+                Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
             }
-            FirebaseRepository.enviarResetPassword(email,
-                onSuccess = { Toast.makeText(this, "Correo de recuperación enviado a $email", Toast.LENGTH_LONG).show() },
-                onError   = { msg -> Toast.makeText(this, "Error: $msg", Toast.LENGTH_LONG).show() }
-            )
+        }
+
+        binding.tvForgotPassword.setOnClickListener {
+            Toast.makeText(this, "Funcionalidad no implementada", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun consultarRolYNavegar(uid: String) {
-        FirebaseRepository.obtenerPerfil(uid,
-            onSuccess = { data -> navegarSegunRol(data["rol"] as? String ?: "tutor") },
-            onError   = { FirebaseRepository.cerrarSesion() }
+
+    private fun setupUserTypeDropdown() {
+        val userTypes = arrayOf(
+            getString(R.string.tutor),
+            getString(R.string.conductor),
+            getString(R.string.administrador)
         )
+        
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userTypes)
+        binding.actvUserType.setAdapter(adapter)
     }
-    private fun navegarSegunRol(rol: String) {
-        val dest = when (rol) {
-            getString(R.string.tutor),         "tutor"         -> HomeActivity::class.java
-            getString(R.string.conductor),     "conductor"     -> PantallaPrincipalConductorActivity::class.java
-            getString(R.string.administrador), "administrador" -> PantallaPrincipalAdministradorActivity::class.java
-            else -> HomeActivity::class.java
+
+    private fun navigateToPrincipal(type: String) {
+        val intent = when (type) {
+            getString(R.string.tutor) -> Intent(this, HomeActivity::class.java)
+            getString(R.string.conductor) -> Intent(this, PantallaPrincipalConductorActivity::class.java)
+            getString(R.string.administrador) -> Intent(this, PantallaPrincipalAdministradorActivity::class.java)
+            else -> Intent(this, HomeActivity::class.java)
         }
-        startActivity(Intent(this, dest).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        })
+
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
         finish()
     }
 }

@@ -52,6 +52,7 @@
                 android:text="Al crear una cuenta en RideTogether, aceptas nuestros términos y condiciones. Por favor, lee atentamente los siguientes apartados."
                 android:textColor="@color/gray_text" />
 
+            <!-- Lista clickeable usando MaterialCards -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvUseApp"
                 android:layout_width="match_parent"

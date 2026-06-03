@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "548531938787",
+    "project_id": "ridetogethermvp",
+    "storage_bucket": "ridetogethermvp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548531938787:android:0479251714b4c9b2516cd6",
+        "android_client_info": {
+          "package_name": "com.example.proyecto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD9eG9NzwpbmhTUbZ7xtjMh8kpxv4XMNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

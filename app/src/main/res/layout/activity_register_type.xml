@@ -36,6 +36,7 @@
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/tvSelectType">
 
+        <!-- Tutor -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvTutor"
             android:layout_width="match_parent"
@@ -94,6 +95,7 @@
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Conductor -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvDriver"
             android:layout_width="match_parent"
@@ -151,6 +153,7 @@
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Administrador -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvAdmin"
             android:layout_width="match_parent"
